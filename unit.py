@@ -18,25 +18,27 @@ class BaseUnit(ABC):
         self.unit_class = unit_class
         self.hp = unit_class.max_health
         self.stamina = unit_class.max_stamina
-        self.weapon = ...
-        self.armor = ...
-        self._is_skill_used = ...
+        self.weapon = None
+        self.armor = None
+        self._is_skill_used = False
 
     @property
     def health_points(self):
-        return # TODO возвращаем аттрибут hp в красивом виде
+        return round(self.hp, 1)
 
     @property
     def stamina_points(self):
-        return  # TODO возвращаем аттрибут hp в красивом виде
+        return round(self.stamina, 1)
 
     def equip_weapon(self, weapon: Weapon):
         # TODO присваиваем нашему герою новое оружие
+        self.weapon = weapon
         return f"{self.name} экипирован оружием {self.weapon.name}"
 
     def equip_armor(self, armor: Armor):
         # TODO одеваем новую броню
-        return f"{self.name} экипирован броней {self.weapon.name}"
+        self.armor = armor
+        return f"{self.name} экипирован броней {self.armor.name}"
 
     def _count_damage(self, target: BaseUnit) -> int:
         # TODO Эта функция должна содержать:
@@ -47,6 +49,7 @@ class BaseUnit(ABC):
         #  если у защищающегося нехватает выносливости - его броня игнорируется
         #  после всех расчетов цель получает урон - target.get_damage(damage)
         #  и возвращаем предполагаемый урон для последующего вывода пользователю в текстовом виде
+        self.stamina -= self.weapon.stamina_per_hit * self.unit_class.stamina
         return damage
 
     def get_damage(self, damage: int) -> Optional[int]:
