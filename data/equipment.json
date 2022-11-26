@@ -20,6 +20,13 @@
   "max_damage": 1,
   "min_damage": 0.5,
   "stamina_per_hit": 1
+  },
+  {
+  "id": 4,
+  "name": "tesla-gun",
+  "max_damage": 55,
+  "min_damage": 30,
+  "stamina_per_hit": 5
   }
 ],
   "armors": [
@@ -33,13 +40,13 @@
     "id": 2,
     "name":"кожаная броня",
     "defence": 1.2,
-    "stamina_per_turn": 1
+    "stamina_per_turn": 0.5
     },
     {
     "id": 3,
     "name": "панцирь",
     "defence": 2.0,
-    "stamina_per_turn": 1.6
+    "stamina_per_turn": 1
     }
   ]
 }
